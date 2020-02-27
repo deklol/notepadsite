@@ -165,8 +165,10 @@ $(document).ready(function() {
   $('#site-name').on('click', function() {
     if (cart_visible)
       $('#mySidebar').css('width', '0');
+      $('#body').css('width', '0');
     else
       $('#mySidebar').css('width','250px');
+      $('#body').css('margin-left', '250px');
 
     cart_visible = !cart_visible;
   });
