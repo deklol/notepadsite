@@ -43,7 +43,7 @@
         <section id="article-2" class="paper">
             <article class="head"></article>   
              <p>&nbsp;</p>
-              <article contenteditable="true">You can type content here!</article>
+              <article contenteditable="true">Start typing your content editable content here!</article>
            </section>
     </div>
 
@@ -165,10 +165,9 @@ $(document).ready(function() {
   $('#site-name').on('click', function() {
     if (cart_visible)
       $('#mySidebar').css('width', '0');
-      $('#body').css('width', '0');
+    
     else
       $('#mySidebar').css('width','250px');
-      $('#body').css('margin-left', '250px');
 
     cart_visible = !cart_visible;
   });
