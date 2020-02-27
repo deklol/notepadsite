@@ -9,14 +9,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="style.css">
         <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Gochi+Hand|Source+Code+Pro&display=swap" rel="stylesheet"> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     </head>
 
 <!-- Start -->
 <body>
-    <div id="body">
+    <div id="body" style="margin-left: 0px;">
     <div id="header">
         <article class="header-main">
-            <div onclick='openNav();'>MAN&WOLF.MEDIA</div>
+            <div id="site-name">MAN&WOLF.MEDIA</div>
         </article>
     </div>
     <div id="content-1">
@@ -58,7 +59,7 @@
               <!-- Post Content-->
               <div class="post-content">
                 <div class="category">LionBros.co.uk</div>
-                <h1 class="title">ONLINE</h1>
+                <h1 class="title">City Lights in New York</h1>
                 <h2 class="sub_title">The city that never sleeps.</h2>
                 <p class="description">New York, the largest city in the U.S., is an architectural marvel with plenty of historic monuments, magnificent buildings and countless dazzling skyscrapers.</p>
                 <div class="post-meta"><span class="timestamp"></i> Website Design & Development</span></div>
@@ -76,7 +77,7 @@
               <!-- Post Content-->
               <div class="post-content">
                 <div class="category">32Custom.co.uk</div>
-                <h1 class="title">ONLINE</h1>
+                <h1 class="title">City Lights in New York</h1>
                 <h2 class="sub_title">The city that never sleeps.</h2>
                 <p class="description">New York, the largest city in the U.S., is an architectural marvel with plenty of historic monuments, magnificent buildings and countless dazzling skyscrapers.</p>
                 <div class="post-meta"><span class="timestamp"></i> Webstore Design & Development</span></div>
@@ -94,7 +95,7 @@
               <!-- Post Content-->
               <div class="post-content">
                 <div class="category">KingdomContractors.co.uk</div>
-                <h1 class="title">ONLINE</h1>
+                <h1 class="title">City Lights in New York</h1>
                 <h2 class="sub_title">The city that never sleeps.</h2>
                 <p class="description">New York, the largest city in the U.S., is an architectural marvel with plenty of historic monuments, magnificent buildings and countless dazzling skyscrapers.</p>
                 <div class="post-meta"><span class="timestamp"></i> Website Design & Development</span></div>
@@ -112,7 +113,7 @@
               <!-- Post Content-->
               <div class="post-content">
                 <div class="category">OakTreeSurgeons.co.uk</div>
-                <h1 class="title">ONLINE</h1>
+                <h1 class="title">City Lights in New York</h1>
                 <h2 class="sub_title">The city that never sleeps.</h2>
                 <p class="description">New York, the largest city in the U.S., is an architectural marvel with plenty of historic monuments, magnificent buildings and countless dazzling skyscrapers.</p>
                 <div class="post-meta"><span class="timestamp"></i> Website Design & Development</span></div>
@@ -129,23 +130,48 @@
         <a href="#">Clients</a>
         <a href="#">Contact</a>
       </div>
-      <script>
-          function toggleNav(){
-            navSize = document.getElementById("mySidenav").style.width;
-            if (navSize == 250) {
-               return closeNav();
-    }
-    return openNav();
-}
-        function openNav() {
-          document.getElementById("mySidebar").style.width = "250px";
-          document.getElementById("body").style.marginLeft = "250px";
-        }
+        <script>
+          $('#site-name')
+    .data('textToggle', 'MENU')
+    .hover(function (e) {
+        var that = $(this);
+
+        // get the text from data attribute
+        var textToSet = that.data('textToggle');
+
+        // save the current text so it can be reverted
+        that.data('textToggle', that.text());
+
+        // set the new text
+        that.text(textToSet);
+    }, function (e) {
+        var that = $(this);
+
+        // get the text from data attribute
+        var textToSet = that.data('textToggle');
+
+        // save the current text so it can be reverted
+        that.data('textToggle', that.text());
+
+        // set the new text
+        that.text(textToSet);
         
-        function closeNav() {
-          document.getElementById("mySidebar").style.width = "0";
-          document.getElementById("body").style.marginLeft= "0";
-        }
+    });
         </script>
+        <script type="text/javascript">
+$(document).ready(function() {
+  var cart_visible = false;
+
+  $('#site-name').on('click', function() {
+    if (cart_visible)
+      $('#mySidebar').css('width', '0');
+    else
+      $('#mySidebar').css('width','250px');
+
+    cart_visible = !cart_visible;
+  });
+});
+      </script>
 </body>
 </html>
+
