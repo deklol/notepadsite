@@ -9,15 +9,28 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="style.css">
         <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Gochi+Hand|Source+Code+Pro&display=swap" rel="stylesheet"> 
+        <link href="https://raw.githubusercontent.com/daneden/animate.css/master/animate.css" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    </head>
+      
+      </head>
 
 <!-- Start -->
 <body>
+  <div class="progress-header">
+  <div class="progress-container">
+    <div class="progress-bar" id="myBar"></div>
+  </div>  
+</div>
+  <div id="mySidebar" class="sidebar">
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Clients</a>
+    <a href="#">Contact</a>
+  </div>
     <div id="body" style="margin-left: 0px;">
     <div id="header">
         <article class="header-main">
-            <div id="site-name">MAN&WOLF.MEDIA</div>
+            <div id="site-name" class="animated bounce delay-2s">MAN&WOLF.MEDIA</div>
         </article>
     </div>
     <div id="content-1">
@@ -40,15 +53,7 @@
     </div>
 
     <div id="content-2">
-        <section id="article-2" class="paper">
-            <article class="head"></article>   
-             <p>&nbsp;</p>
-              <article contenteditable="true">Start typing your content editable content here!</article>
-           </section>
-    </div>
-
-    <div id="content-3">
-        <div class="container">
+      <div class="container">
         <div class="column">
             <!-- Post-->
             <div class="post-module">
@@ -122,17 +127,15 @@
           </div>
         </div>
     </div>
+
+    <div id="content-3">
+        test
+    </div>
 </div>
-    <div id="mySidebar" class="sidebar">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Clients</a>
-        <a href="#">Contact</a>
-      </div>
+
         <script>
           $('#site-name')
-    .data('textToggle', 'MENU')
+    .data('textToggle', '≡ MENU')
     .hover(function (e) {
         var that = $(this);
 
@@ -163,16 +166,28 @@ $(document).ready(function() {
   var cart_visible = false;
 
   $('#site-name').on('click', function() {
-    if (cart_visible)
+    if (cart_visible) {
       $('#mySidebar').css('width', '0');
-    
-    else
-      $('#mySidebar').css('width','250px');
-
+      $('#body').css('margin-left', '0');
+    } else {
+      $('#mySidebar').css('width', '250px');
+      $('#body').css('margin-left', '250px');
+    }
     cart_visible = !cart_visible;
   });
 });
       </script>
+      <script>
+        // When the user scrolls the page, execute myFunction 
+        window.onscroll = function() {myFunction()};
+        
+        function myFunction() {
+          var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+          var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+          var scrolled = (winScroll / height) * 100;
+          document.getElementById("myBar").style.width = scrolled + "%";
+        }
+        </script>
 </body>
 </html>
 
