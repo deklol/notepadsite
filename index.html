@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css"  href='style.css' />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://css-tricks.com/examples/DynamicPage/js/jquery.ba-hashchange.min.js"></script>
@@ -55,6 +56,8 @@ a {
 	border-radius: 2px;
 	opacity: .3;
 	color: #fff;
+	font-weight: 600;
+	cursor: pointer;
 }
 
 .item:hover {
@@ -74,6 +77,24 @@ It has the problem that the content will  will be cut on top if the window is sm
 .content {
 	width: 1200px;
 	height: 600px;
+	background-color: blue;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	max-width: 100%;
+	max-height: 100%;
+	z-index: 1;
+	-webkit-box-shadow: 0px 0px 32px -5px rgba(0, 0, 0, 0.75);
+	-moz-box-shadow: 0px 0px 32px -5px rgba(0, 0, 0, 0.75);
+	box-shadow: 0px 0px 32px -5px rgba(0, 0, 0, 0.75);
+	overflow: hidden;
+    transition: none !important;
+}
+
+.content-fullscreen {
 	background-color: blue;
 	position: absolute;
 	left: 0;
@@ -119,6 +140,24 @@ height: 50px;
 width: 50px;
 }
 
+.server-item2 {
+background-image: url("server-icon.png");
+background-repeat: no-repeat;
+background-position: center;
+background-size: cover;
+margin: 0 auto 15px;
+color: #fff;
+height: 50px;
+width: 50px;
+border-radius:50%;
+}
+
+.server-item2:hover {
+background-image: none;
+background-color: #7289da;
+border-radius: 30%;
+}
+
 .server-item img {
     border-radius: 50%;
     transition: all .3s ease;
@@ -144,13 +183,19 @@ width: 50px;
 	background-color: #555;
 }
 
-.server-item img:hover {
+.server-item:hover {
+background-image:none;
+background-color: #7289da;
 border-radius: 30%;
+}
+
+.server-item img:hover {
+display:none;
 }
 
 .header {
 	background: #2e3136;
-	width: 215px;
+	width: 216px;
 	border-bottom: 1px solid #23252a;
 	position: absolute;
 	z-index: 1;
@@ -162,10 +207,13 @@ border-radius: 30%;
 	padding-left: 24px;
 	margin-bottom: 20px;
 	font-weight: 700;
+	background-image:url("top-left.png");
+	background-repeat: no-repeat;
+	border-top: 15px #202225 solid;
 }
 
 .header2 {
-	border-bottom: 1px solid #303337;
+	border-bottom: 1px solid #23252a4f;
 	width: 100%;
 	position: absolute;
 	z-index: 1;
@@ -177,6 +225,8 @@ border-radius: 30%;
 	padding-left: 24px;
 	margin-bottom: 20px;
 	font-weight: 700;
+	box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.08);
+	border-top: 15px #202225 solid;
 }
 
 .item-list {
@@ -205,9 +255,16 @@ border-radius: 30%;
 }
 
 .main-content {
-	margin-top: 57px;
+	margin-top: 72px;
     max-width: 875px;
     max-height: 543px;
+    overflow-y: scroll !important;
+    height: 100%;
+    position:relative;
+}
+
+.main-content-fs {
+	margin-top: 72px;
     overflow-y: scroll !important;
     height: 100%;
     position:relative;
@@ -236,9 +293,44 @@ ol.custom > li:before {
   opacity: 0.3;
   padding: 3px 0px 0px 5px;
   font-size: 25px;
+  color: #e5f6f7;
 }
 
-ol.custom:first-child {
+ol.header-topic:first-child {
+  counter-reset: customlistcounter;
+}
+
+ol.header-topic {
+  list-style-type: none;
+  margin-left: 0;
+  padding: 0;
+  line-height: normal;
+  text-decoration: none;
+}
+
+ol.header-topic a{
+  text-decoration: none;
+  color: #fff;
+}
+
+ol.header-topic > li {
+  counter-increment: customlistcounter;
+}
+
+ol.header-topic > li:before {
+  content: "#";
+  font-weight: bold;
+  float: left;
+  width: 1em;
+  opacity: 0.3;
+  font-size: 30px;
+  color: #e5f6f7;
+  margin-top: -8px;
+margin-left: -8px;
+margin-right: 4px;
+}
+
+ol.header-topic:first-child {
   counter-reset: customlistcounter;
 }
 
@@ -247,7 +339,6 @@ width: 100%;
 border-bottom: 1px solid #3a3d46;
 position: relative;
 padding: 15px;
-max-width: 828px;
 }
 
 .profile-icon {
@@ -302,6 +393,23 @@ color: #fff;
 padding-bottom: 10px;
 }
 
+.boost {
+margin-left: -5px;
+margin-right: 5px;
+margin-bottom: -5px;
+cursor: pointer;
+}
+
+.spacer{
+	text-align: center;
+	background-image:url('split.png');
+	background-repeat: no-repeat;
+	height: 12px;
+	background-position: center; 
+	margin-bottom: 8px;
+margin-top: -10px;
+}
+
 .header3 {
 	border-bottom: 1px solid #303337;
 	width: 100%;
@@ -317,25 +425,54 @@ padding-bottom: 10px;
 	font-weight: 700;
     background-color: red;
 }
+
+#loading {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100vw;
+    height: 100vh;
+    background-color:#23272a;
+    background-image: url("https://cdn.discordapp.com/attachments/414258067870449665/445736475158380544/discord.gif");
+    background-repeat: no-repeat;
+    background-position: center;
+	background-size: 100px;
+}
+
+#fullscreen {
+	color: white;
+	font-size: 10px;
+	text-align: center;
+	opacity: 0.5;
+}
+
+#fullscreen a {
+	color: white;
+}
 </style>
 <script type="text/javascript">  
     $(document).ready(function()  
    {  
-        var p1 = "<div class='message'><div class='profile-icon'><img class='responsive-img' src='pfp.gif'></div><div class='message-content'><div class='user-name'><a href='#'>dek</a> <span class='timestamp'>Today at 13:37</span></div><strong>ＷＥＬＣＯＭＥ　ＴＯ<br/>ＴＨＥ　ＧＯＯＳＥ　ＨＯＵＳＥ　ＤＩＳＣＯＲＤ　ＳＥＲＶＥＲ．</strong><br/><br/>Stick to the fuckin' rules and we're all good.<br/><br/><strong>- Use the right fucking channels.</strong><br/><strong>- No spam, ads (including self-promotion), etc.</strong><br/><strong>- Don't troll in the text channels.</strong><br/><strong>- Don't abuse mentions.</strong><br/><strong>- Don't abuse your admin rights.</strong><br/><strong>- Don't abuse the bots.</strong><br/><br/>*Do not type in this channel. Delete the current GIF before adding a new one.*</div></div>";  
-
-        var p2 = "<div class='message'><div class='profile-icon'><img class='responsive-img' src='pfp.gif'></div><div class='message-content'><div class='user-name'><a href='#'>dek</a> <span class='timestamp'>Today at 13:37</span></div></div><img src='https://cdn.discordapp.com/attachments/693496554148855895/693660698172981258/cero-miedo-gif-4.gif'/></div>";  
-
-        var p3 = "<div class='message'><div class='profile-icon'><img class='responsive-img' src='pfp.gif'></div><div class='message-content'><div class='user-name'><a href='#'>dek</a> <span class='timestamp'>Today at 13:37</span></div><strong>no.</div></div>"; 
-
+        var p1 = "<div class='message animated fadeIn'><div class='profile-icon'><img class='responsive-img' src='pfp.gif'></div><div class='message-content'><div class='user-name'><a href='#'>dek</a> <span class='timestamp'>Today at 13:37</span></div><strong>ＷＥＬＣＯＭＥ　ＴＯ<br/>ＴＨＥ　ＧＯＯＳＥ　ＨＯＵＳＥ　ＤＩＳＣＯＲＤ　ＳＥＲＶＥＲ．</strong><br/><br/>Stick to the fuckin' rules and we're all good.<br/><br/><strong>- Use the right fucking channels.</strong><br/><strong>- No spam, ads (including self-promotion), etc.</strong><br/><strong>- Don't troll in the text channels.</strong><br/><strong>- Don't abuse mentions.</strong><br/><strong>- Don't abuse your admin rights.</strong><br/><strong>- Don't abuse the bots.</strong><br/><br/>*Do not type in this channel. Delete the current GIF before adding a new one.*</div></div>";  
+        var h1 = "<li><a href='#'' id='one'>general</a></li>";
+        var p2 = "<div class='message animated fadeIn'><div class='profile-icon'><img class='responsive-img' src='pfp.gif'></div><div class='message-content'><div class='user-name'><a href='#'>dek</a> <span class='timestamp'>Today at 13:37</span></div></div><img src='https://cdn.discordapp.com/attachments/693496554148855895/693660698172981258/cero-miedo-gif-4.gif'/></div>";  
+		var h2 = "<li><a href='#'' id='one'>content</a></li>";
+        var p3 = "<div class='message animated fadeIn'><div class='profile-icon'><img class='responsive-img' src='pfp.gif'></div><div class='message-content'><div class='user-name'><a href='#'>dek</a> <span class='timestamp'>Today at 13:37</span></div><strong>no.</div></div>"; 
+		var h3 = "<li><a href='#'' id='one'>info</a></li>";
         $("#one").click(function()  
         {  
-            $("#main-content").html(p1);  
+            $("#main-content").html(p1);
+			$("#ht").html(h1);  
         });  
         $("#two").click(function() {  
-            $("#main-content").html(p2);  
+            $("#main-content").html(p2);
+			$("#ht").html(h2);   
         });  
         $("#three").click(function() {  
-            $("#main-content").html(p3);  
+            $("#main-content").html(p3);
+			$("#ht").html(h3);   
         });  
     }); </script>
 <script>
@@ -347,20 +484,46 @@ padding-bottom: 10px;
         x.style.display = "none";
       }
     }
-    </script>
+	</script>
+
+<script>
+	$(document).ready(function () {
+$('#fs-click').click(function(){
+    $('#content').toggleClass('content');
+    $('#content').toggleClass('content-fullscreen');
+	$('#main-content').toggleClass('main-content');
+	$('#main-content').toggleClass('main-content-fs');
+});
+
+});
+
+</script>
+
+	<script>
+		var xSeconds = 1000; // 1 second
+
+setTimeout(function() {
+   $('#loading').fadeOut('fast');
+}, xSeconds);
+	</script>
+
 </head>
 <body bgcolor="#ffffff" class="animated fadeIn">
+	<div id="loading">
+	</div>
 <div class="background">
 		<div class="content" id="content">
-            <div class="sidebar">
+            <div class="sidebar" id="hi">
                 <div class="server-icons">
-                    <div class="server-item"><a href="/"><img class="responsive-img" src="server-icon.png"></a></div>
-                    <div class="server-item"><a href="/"><img class="responsive-img" src="server-icon.png"></a></div>
-                    <div class="server-item"><a href="/"><img class="responsive-img" src="server-icon.png"></a></div>
+					<a href="#"><div class="server-item2"></div></a>
+					
+					<div class="spacer"></div>
+                    <a href="#"><div class="server-item2"></div></a>
+                    <a href="#"><div class="server-item2"></div></a>
                 </div>
             </div>
             <div class="sidebar2">
-            <div class="header">dek.lol</div>
+            <div class="header"><img class="boost" src="bost.png"/>dek.lol</div>
             <div class="item-list">
 <div class="slides" style="position: relative; height: 20px;">
     <div class="category" id="category" style="position: absolute; left: 0px; top: 0px;">
@@ -379,19 +542,19 @@ padding-bottom: 10px;
             <div class="item active" data="default">general</div>
          </a></li>
         <li><a href="#" id="two">
-            <div class="item" data="default">general</div>
+            <div class="item" data="default">content</div>
          </a></li>
         <li><a href="#" id="three">
-            <div class="item" data="default">general</div>
+            <div class="item" data="default">info</div>
          </a></li>
     </ol>
- 
- 
-                
+ <div id="fullscreen"><a href="#" id="fs-click">full screen</a></div>        
             </div>
         </div>
         <div class="main-div">
-            <div class="header2">#content</div>
+            <div class="header2"><ol class="header-topic" id="ht">
+				<li><a href="#" id="one">general</a></li>
+			</ol></div>
             <div id="main-content" class="main-content">
 <div class="message">
 <div class="profile-icon"><img class="responsive-img" src="pfp.gif"></div>
